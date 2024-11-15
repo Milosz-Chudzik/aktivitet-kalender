@@ -1,109 +1,69 @@
-import os
-import sqlite3
+import mysql.connector
 import calendar
 
-# Check if the database file exists and remove it if it's corrupted
-db_path = 'kalender.db'
-if os.path.exists(db_path):
-    os.remove(db_path)
 
-# Create a new SQLite connection and cursor
-conn = sqlite3.connect(db_path)
-cursor = conn.cursor()
-
-# Create the table
-cursor.execute('''CREATE TABLE IF NOT EXISTS januar (
-                dato TEXT PRIMARY KEY,
-                ukedag TEXT,
-                notater TEXT
-            )''')
-
-conn.commit()
-
-# Continue with the rest of your code...
-
-# Remember to close the connection when done
+mydb = mysql.connector.connect(
+    host="10.2.2.119",
+    user="[milosz]",
+    password="[milosz2007]",
+    database="år"
+)
 
 
+mycursor = mydb.cursor()
 
+def velg_månede():
+    return int(input("Velg en måned (1-12): "))
 
-def display_calendar(year, month, notes):
-    month_calendar = calendar.monthcalendar(year, month)
-      
-    print(" Mon  Tue  Wen  Thu  Fri Sat  Sun")
-    
-    for week in month_calendar:
-        for day in week:
-            if day == 0:
-                print("    ", end="  ") 
-            else:
-                day_str = f"{day:>3}"
-                if day in notes:
-                    day_str += f"*({notes[day]})"
-                print(f"{day_str} ", end=" ")
-        print()  
+def valgtDato():
+    dato = input("velg en dato feks 2024-01-01: ")
+    if dato == "":
+        dato = '2024-01-01'
+    return dato
 
-def get_user_input():
-    while True:
-        try:
-            year = int(input("Enter the year (e.g., 2024): "))
-            month = int(input("Enter the month (1-12): "))
+def vis_januar_2024():
+    text_calendar = calendar.TextCalendar()
+    text_calendar.prmonth(2024, 1)
+    if input("vil du skrive ett notat ja/nei: ").lower() == "ja":
+        dato = valgtDato()
+        # if dato not in range(1, 1000000000000):  
+        #     print("Ugyldig dato!")
+        
+        # else: 
+        notat = input("Skriv notat: ")
+        sql = f"""
+        UPDATE january
+        SET notes = '{notat}'
+        WHERE date = '{dato}'
+        """
+        mycursor.execute(sql)
+        mydb.commit()
+        print(f"Notat lagret for {dato}.")
             
-            if 1 <= month <= 12:
-                return year, month
-            else:
-                print("Invalid month. Please enter a number between 1 and 12.")
-        except ValueError:
-            print("Invalid input. Please enter numeric values.")
 
-def add_note_to_day(notes):
-    try:
-        day = int(input("Enter the day you want to add a note to (1-31): "))
-        if 1 <= day <= 31:
-            note = input(f"Enter the note for day {day}: ")
-            notes[day] = note
-            print(f"Note added for day {day}.")
+
+    else:
+        if input("vil du gå tilbake ja/nei") == "ja":
+            start()
+        
+
+def vis_februar_2024():
+    text_calendar = calendar.TextCalendar()
+    text_calendar.prmonth(2024, 2)
+
+
+
+def start():
+    måned = velg_månede()  
+    if måned not in range(1, 13):  
+        print("Ugyldig måned!")
+        start()
+    else:
+        if måned == 1:
+            vis_januar_2024()
+        elif måned == 2:
+            vis_februar_2024()
         else:
-            print("Invalid day. Please enter a day between 1 and 31.")
-    except ValueError:
-        print("Invalid input. Please enter a numeric value.")
+            print("Funksjon for valgt måned er ikke implementert.")
 
-def load_notes_from_db(year, month):
-    notes = {}
-    cursor.execute('SELECT dato, notater FROM januar WHERE strftime("%Y", dato) = ? AND strftime("%m", dato) = ?', (str(year), f"{month:02d}"))
-    rows = cursor.fetchall()
-    for row in rows:
-        day = int(row[0].split('-')[2])  # Extract the day from 'YYYY-MM-DD'
-        notes[day] = row[1]
-    return notes
-
-
-while True:
-    year, month = get_user_input()
-    notes = load_notes_from_db(year, month)  # Load existing notes from the database
-    display_calendar(year, month, notes)
-    
-    add_note = input("Would you like to add a note to a day? (y/n): ").lower()
-    if add_note == 'y':
-        add_note_to_day(notes, year, month)
-    
-    continue_prompt = input("Would you like to see another month? (y/n): ").lower()
-    if continue_prompt != 'y':
-        break
-
-
-notes = {}  
-
-while True:
-    year, month = get_user_input()
-    display_calendar(year, month, notes)
-    
-    add_note = input("Would you like to add a note to a day? (y/n): ").lower()
-    if add_note == 'y':
-        add_note_to_day(notes)
-    
-    continue_prompt = input("Would you like to see another month? (y/n): ").lower()
-    if continue_prompt != 'y':
-        break
-
-conn.close()
+start()
