@@ -40,7 +40,11 @@ VALUES
     ('2024-01-30', DAYOFWEEK('2024-01-30'), ''),
     ('2024-01-31', DAYOFWEEK('2024-01-31'), '');
 
-
+CREATE TABLE IF NOT EXISTS february (
+    date DATE PRIMARY KEY,
+    day_of_week VARCHAR(10),
+    notes TEXT
+);
 INSERT INTO february (date, day_of_week, notes)
 VALUES 
     ('2024-02-01', DAYOFWEEK('2024-02-01'), ''),
@@ -73,7 +77,11 @@ VALUES
     ('2024-02-28', DAYOFWEEK('2024-02-28'), ''),
     ('2024-02-29', DAYOFWEEK('2024-02-29'), '');
 
-
+CREATE TABLE IF NOT EXISTS march (
+    date DATE PRIMARY KEY,
+    day_of_week VARCHAR(10),
+    notes TEXT
+);
 -- March
 INSERT INTO march (date, day_of_week, notes)
 VALUES 
@@ -109,6 +117,12 @@ VALUES
     ('2024-03-30', DAYOFWEEK('2024-03-30'), ''),
     ('2024-03-31', DAYOFWEEK('2024-03-31'), '');
 
+
+CREATE TABLE IF NOT EXISTS april (
+    date DATE PRIMARY KEY,
+    day_of_week VARCHAR(10),
+    notes TEXT
+);
 -- April
 INSERT INTO april (date, day_of_week, notes)
 VALUES 
@@ -143,7 +157,11 @@ VALUES
     ('2024-04-29', DAYOFWEEK('2024-04-29'), ''),
     ('2024-04-30', DAYOFWEEK('2024-04-30'), '');
 
-
+CREATE TABLE IF NOT EXISTS may (
+    date DATE PRIMARY KEY,
+    day_of_week VARCHAR(10),
+    notes TEXT
+);
 -- May
 INSERT INTO may (date, day_of_week, notes)
 VALUES 
@@ -179,7 +197,11 @@ VALUES
     ('2024-05-30', DAYOFWEEK('2024-05-30'), ''),
     ('2024-05-31', DAYOFWEEK('2024-05-31'), '');
 
-
+CREATE TABLE IF NOT EXISTS june (
+    date DATE PRIMARY KEY,
+    day_of_week VARCHAR(10),
+    notes TEXT
+);
 -- June
 INSERT INTO june (date, day_of_week, notes)
 VALUES 
@@ -214,7 +236,11 @@ VALUES
     ('2024-06-29', DAYOFWEEK('2024-06-29'), ''),
     ('2024-06-30', DAYOFWEEK('2024-06-30'), '');
 
-
+CREATE TABLE IF NOT EXISTS july (
+    date DATE PRIMARY KEY,
+    day_of_week VARCHAR(10),
+    notes TEXT
+);
 -- July
 INSERT INTO july (date, day_of_week, notes)
 VALUES 
@@ -250,7 +276,11 @@ VALUES
     ('2024-07-30', DAYOFWEEK('2024-07-30'), ''),
     ('2024-07-31', DAYOFWEEK('2024-07-31'), '');
 
-
+CREATE TABLE IF NOT EXISTS august (
+    date DATE PRIMARY KEY,
+    day_of_week VARCHAR(10),
+    notes TEXT
+);
 -- August
 INSERT INTO august (date, day_of_week, notes)
 VALUES 
@@ -286,7 +316,11 @@ VALUES
     ('2024-08-30', DAYOFWEEK('2024-08-30'), ''),
     ('2024-08-31', DAYOFWEEK('2024-08-31'), '');
 
-
+CREATE TABLE IF NOT EXISTS september (
+    date DATE PRIMARY KEY,
+    day_of_week VARCHAR(10),
+    notes TEXT
+);
 -- September
 INSERT INTO september (date, day_of_week, notes)
 VALUES 
@@ -321,6 +355,11 @@ VALUES
     ('2024-09-29', DAYOFWEEK('2024-09-29'), ''),
     ('2024-09-30', DAYOFWEEK('2024-09-30'), '');
 
+CREATE TABLE IF NOT EXISTS october (
+    date DATE PRIMARY KEY,
+    day_of_week VARCHAR(10),
+    notes TEXT
+);
 -- October
 INSERT INTO october (date, day_of_week, notes)
 VALUES 
@@ -356,7 +395,11 @@ VALUES
     ('2024-10-30', DAYOFWEEK('2024-10-30'), ''),
     ('2024-10-31', DAYOFWEEK('2024-10-31'), '');
 
-
+CREATE TABLE IF NOT EXISTS november (
+    date DATE PRIMARY KEY,
+    day_of_week VARCHAR(10),
+    notes TEXT
+);
 -- November
 CREATE TABLE IF NOT EXISTS november
 INSERT INTO november (date, day_of_week, notes)
@@ -392,7 +435,11 @@ VALUES
     ('2024-11-29', DAYOFWEEK('2024-11-29'), ''),
     ('2024-11-30', DAYOFWEEK('2024-11-30'), '');
 
-
+CREATE TABLE IF NOT EXISTS december (
+    date DATE PRIMARY KEY,
+    day_of_week VARCHAR(10),
+    notes TEXT
+);
 -- December
 INSERT INTO december (date, day_of_week, notes)
 VALUES 
