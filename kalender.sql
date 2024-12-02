@@ -2,7 +2,11 @@ create database kalender;
 
 use kalender;
 
-create table 
+CREATE TABLE IF NOT EXISTS january (
+    date DATE PRIMARY KEY,
+    day_of_week VARCHAR(10),
+    notes TEXT
+);
 
 
 
