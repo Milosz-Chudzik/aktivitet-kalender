@@ -4,7 +4,7 @@ mydb = mysql.connector.connect(
     host="10.2.2.119",
     user="[milosz]",
     password="[milosz2007]",
-    database="Stats"
+    database="kalender"
 )
 
 cursor = mydb.cursor()
@@ -29,7 +29,8 @@ def login_user():
     passord = input("Skriv inn passordet ditt: ").strip()
 
     try:
-        cursor.execute("SELECT passord FROM bruker WHERE brukernavn = %s", (brukernavn,))
+        query = "SELECT passord FROM bruker WHERE brukernavn = '" + brukernavn +"';"
+        cursor.execute(query)
         result = cursor.fetchone()
 
         if result:
@@ -37,7 +38,8 @@ def login_user():
             if passord == stored_passord:
                 print(f"Velkommen, {brukernavn}!")
                 innlogget_bruker = brukernavn
-                cursor.execute("SELECT bruker_id FROM bruker WHERE brukernavn = %s", (innlogget_bruker))
+                query = "SELECT bruker_id FROM bruker WHERE brukernavn = '" + brukernavn + "';"
+                cursor.execute(query)
                 brukerId = cursor.fetchone()
                 print(brukerId)
             else:
