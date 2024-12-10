@@ -7,79 +7,7 @@ mydb = mysql.connector.connect(
     database="kalender"
 )
 
-cursor = mydb.cursor()
-
-innlogget_bruker = None
-
-def register_user():
-    brukernavn = input("Skriv inn brukernavnet du ønsker: ").strip()
-    passord = input("Skriv inn et passord: ").strip()
-
-    try:
-        cursor.execute("INSERT INTO bruker (brukernavn, passord) VALUES (%s, %s)", (brukernavn, passord))
-        mydb.commit()
-        print("Brukeren din er registrert.")
-    except mysql.connector.Error as err:
-        print(f"Feil: {err}")
-        print("Brukernavnet finnes kanskje allerede. Prøv et annet brukernavn.")
-
-def login_user():
-    global innlogget_bruker  
-    brukernavn = input("Skriv inn brukernavnet ditt: ").strip()
-    passord = input("Skriv inn passordet ditt: ").strip()
-
-    try:
-        query = "SELECT passord FROM bruker WHERE brukernavn = '" + brukernavn +"';"
-        cursor.execute(query)
-        result = cursor.fetchone()
-
-        if result:
-            stored_passord = result[0]
-            if passord == stored_passord:
-                print(f"Velkommen, {brukernavn}!")
-                innlogget_bruker = brukernavn
-                query = "SELECT bruker_id FROM bruker WHERE brukernavn = '" + brukernavn + "';"
-                cursor.execute(query)
-                brukerId = cursor.fetchone()
-                print(brukerId)
-            else:
-                print("Feil passord. Prøv igjen.")
-        else:
-            print("Fant ikke bruker. Prøv igjen.")
-    except mysql.connector.Error as err:
-        print(f"Feil under innlogging: {err}")
-
-def main():
-    while True:
-        print("\n--- Brukeradministrasjon ---")
-        print("1. Registrer")
-        print("2. Logg inn")
-        print("3. Avslutt")
-
-        valg = input("Hva ønsker du å gjøre: ")
-
-        if valg == "1":
-            register_user()
-
-        elif valg == "2":
-            login_user()
-
-        elif valg == "3":
-            print("Avslutter programmet...")
-            break
-
-        else:
-            print("Ugyldig valg. Prøv igjen.")
-
-if __name__ == "__main__":
-    try:
-        main()
-    except Exception as e:
-        print(f"En uventet feil oppstod: {e}")
-    finally:
-        cursor.close()
-        mydb.close()
-
+cursor = mydb.cursor(buffered=True)
 
 #stats
 def start():
@@ -129,7 +57,13 @@ def oppdater_ovelse():
     if valg == 1:
         øvelse = input("hvilken øvelse skal du oppdatere: ")
         reps = int(input("nytt antall reps: "))
-        sql = f"update bruker_ovelser where bruker_id "
+        sql = f"select ovelse_id from ovelser where ovelse = '{øvelse}';"
+        cursor.execute(sql)
+        ovelse_id = cursor.fetchone()[0]
+        print(ovelse_id)
+        sql = f"update bruker_ovelser set reps = {reps} where ovelse_id = {ovelse_id} and bruker_id = {innlogget_bruker};"
+        cursor.execute(sql)
+        print(innlogget_bruker)
 
     elif valg == 2:
         print()
@@ -147,3 +81,76 @@ def oppdater_ovelse():
         
 def vis_ovelse():
     print()
+
+innlogget_bruker = None
+
+def register_user():
+    brukernavn = input("Skriv inn brukernavnet du ønsker: ").strip()
+    passord = input("Skriv inn et passord: ").strip()
+
+    try:
+        cursor.execute("INSERT INTO bruker (brukernavn, passord) VALUES (%s, %s)", (brukernavn, passord))
+        mydb.commit()
+        print("Brukeren din er registrert.")
+    except mysql.connector.Error as err:
+        print(f"Feil: {err}")
+        print("Brukernavnet finnes kanskje allerede. Prøv et annet brukernavn.")
+
+def login_user():
+    global innlogget_bruker  
+    brukernavn = input("Skriv inn brukernavnet ditt: ").strip()
+    passord = input("Skriv inn passordet ditt: ").strip()
+
+    try:
+        query = "SELECT passord FROM bruker WHERE brukernavn = '" + brukernavn +"';"
+        cursor.execute(query)
+        result = cursor.fetchone()
+
+        if result:
+            stored_passord = result[0]
+            if passord == stored_passord:
+                print(f"Velkommen, {brukernavn}!")
+                query = "SELECT bruker_id FROM bruker WHERE brukernavn = '" + brukernavn + "';"
+                cursor.execute(query)
+                brukerId = cursor.fetchone()
+                innlogget_bruker = brukerId[0]
+                print(f"{innlogget_bruker}")
+
+                start()
+
+            else:
+                print("Feil passord. Prøv igjen.")
+        else:
+            print("Fant ikke bruker. Prøv igjen.")
+    except mysql.connector.Error as err:
+        print(f"Feil under innlogging: {err}")
+
+def main():
+    print("\n--- Brukeradministrasjon ---")
+    print("1. Registrer")
+    print("2. Logg inn")
+    print("3. Avslutt")
+
+    valg = input("Hva ønsker du å gjøre: ")
+
+    if valg == "1":
+        register_user()
+
+    elif valg == "2":
+        login_user()
+
+    elif valg == "3":
+        print("Avslutter programmet...")
+        
+
+    else:
+        print("Ugyldig valg. Prøv igjen.")
+
+
+
+
+
+#cursor.close()
+#mydb.close()
+
+
