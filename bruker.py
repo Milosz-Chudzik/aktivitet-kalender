@@ -56,13 +56,15 @@ def oppdater_ovelse():
     valg = int(input("hva er det du ønsker å endre? \ntrykk 1 for reps \ntrykk 2 for sets \ntrykk 3 for vekt \ntrykk 4 for å gå tilbake:"))
     if valg == 1:
         øvelse = input("hvilken øvelse skal du oppdatere: ")
-        reps = int(input("nytt antall reps: "))
+        reps = input("nytt antall reps: ")
         sql = f"select ovelse_id from ovelser where ovelse = '{øvelse}';"
         cursor.execute(sql)
         ovelse_id = cursor.fetchone()[0]
         print(ovelse_id)
-        sql = f"update bruker_ovelser set reps = {reps} where ovelse_id = {ovelse_id} and bruker_id = {innlogget_bruker};"
+        sql = f"update bruker_ovelser set reps = 4 where ovelse_id = 4 and bruker_id = 1;"
+        # sql = f"update bruker_ovelser set reps = {reps} where ovelse_id = {ovelse_id} and bruker_id = {innlogget_bruker};"
         cursor.execute(sql)
+        print(sql)
         print(innlogget_bruker)
 
     elif valg == 2:
@@ -99,7 +101,11 @@ def register_user():
 def login_user():
     global innlogget_bruker  
     brukernavn = input("Skriv inn brukernavnet ditt: ").strip()
+    if brukernavn == "":
+        brukernavn = "micha010"
     passord = input("Skriv inn passordet ditt: ").strip()
+    if passord == "":
+        passord = "passord"
 
     try:
         query = "SELECT passord FROM bruker WHERE brukernavn = '" + brukernavn +"';"
@@ -148,7 +154,7 @@ def main():
 
 
 
-
+main()
 
 #cursor.close()
 #mydb.close()
