@@ -60,18 +60,32 @@ def oppdater_ovelse():
         sql = f"select ovelse_id from ovelser where ovelse = '{øvelse}';"
         cursor.execute(sql)
         ovelse_id = cursor.fetchone()[0]
-        print(ovelse_id)
-        sql = f"update bruker_ovelser set reps = 4 where ovelse_id = 4 and bruker_id = 1;"
-        # sql = f"update bruker_ovelser set reps = {reps} where ovelse_id = {ovelse_id} and bruker_id = {innlogget_bruker};"
+        sql = f"update bruker_ovelser set reps = {reps} where ovelse_id = {ovelse_id} and bruker_id = {innlogget_bruker};"
         cursor.execute(sql)
+        mydb.commit()
+
         print(sql)
         print(innlogget_bruker)
 
     elif valg == 2:
-        print()
+        øvelse = input("hvilken øvelse skal du oppdatere: ")
+        sets = input("nytt antall sets: ")
+        sql = f"select ovelse_id from ovelser where ovelse = '{øvelse}';"
+        cursor.execute(sql)
+        ovelse_id = cursor.fetchone()[0]
+        sql = f"update bruker_ovelser set sets = {sets} where ovelse_id = {ovelse_id} and bruker_id = {innlogget_bruker};"
+        cursor.execute(sql)
+        mydb.commit()
 
     elif valg == 3:
-        print()
+        øvelse = input("hvilken øvelse skal du oppdatere: ")
+        vekt = input("nny mengde med vekt: ")
+        sql = f"select ovelse_id from ovelser where ovelse = '{øvelse}';"
+        cursor.execute(sql)
+        ovelse_id = cursor.fetchone()[0]
+        sql = f"update bruker_ovelser set vekt = {vekt} where ovelse_id = {ovelse_id} and bruker_id = {innlogget_bruker};"
+        cursor.execute(sql)
+        mydb.commit()
 
     elif valg == 4:
         start()
@@ -82,9 +96,15 @@ def oppdater_ovelse():
         
         
 def vis_ovelse():
-    print()
+    mycursor = mydb.cursor()
 
-innlogget_bruker = None
+    mycursor.execute("SELECT * FROM bruker_ovelser")
+
+    myresult = mycursor.fetchall()
+
+    for x in myresult:
+        print(x)
+
 
 def register_user():
     brukernavn = input("Skriv inn brukernavnet du ønsker: ").strip()
@@ -156,7 +176,5 @@ def main():
 
 main()
 
-#cursor.close()
-#mydb.close()
 
 
