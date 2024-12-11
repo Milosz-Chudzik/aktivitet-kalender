@@ -16,7 +16,7 @@ def start():
         print("1. legge inn øvelser")
         print("2. oppdatere dine øvelser")
         print("3. se dine øvelser")
-        print("4. Avslutt")
+        print("4. gå tilbake")
         valg = int(input("Skriv inn ditt valg: "))
 
         if valg == 1:
@@ -36,21 +36,24 @@ def start():
         start()
 
 def legge_inn_ovelse():
-    navn = input("navn på øvelsen: ")
-    muskelgruppe = input("hvilken muskelgruppe trener øvelsen?: ")
-    try:
-        sql = f"SELECT * FROM ovelser WHERE ovelse = {navn}"
-        cursor.execute(sql)
-        result = cursor.fetchone()
-        if result is None:
-            sql = f"INSERT INTO ovelser (navn, muskelgruppe) VALUES ('{navn}', '{muskelgruppe}')"
-            cursor.execute(sql)
-            mydb.commit()
-            print(f"øvelsen {navn} er lagret.")
-            start()
-    except:
-        print("Noe gikk galt, prøv igjen.")
+    mycursor = mydb.cursor()
+    mycursor.execute("SELECT * FROM muskel_grupper")
+    myresult = mycursor.fetchall()
+    for x in myresult:
+        print(x)
+
+    if input("Er dette en av muskelgruppene øvelsen din trener? (ja/nei): ").lower() == "ja":
+        muskel_gruppe_id = int(input("skriv in hvilken muskel_gruppe_id øvelsen trener: ").lower())
+        ny_øvelse = input("navn på øvelsen du har lyst å legge inn: ").lower()
+        cursor.execute("INSERT INTO ovelser (ovelse, muskelgruppe) VALUES (%s, %s)", (ny_øvelse, muskel_gruppe_id))
+        mydb.commit()
+        
+    else:
+        muskel_gruppe = input("hvilken muskelgruppe trener øvelsen: ")
+        cursor.execute(f"INSERT INTO muskel_grupper (muskel_gruppe) VALUES ('{muskel_gruppe}');")
+        mydb.commit()
         legge_inn_ovelse()
+
 
 def oppdater_ovelse():
     valg = int(input("hva er det du ønsker å endre? \ntrykk 1 for reps \ntrykk 2 for sets \ntrykk 3 for vekt \ntrykk 4 for å gå tilbake:"))
@@ -97,11 +100,8 @@ def oppdater_ovelse():
         
 def vis_ovelse():
     mycursor = mydb.cursor()
-
     mycursor.execute("SELECT * FROM bruker_ovelser")
-
     myresult = mycursor.fetchall()
-
     for x in myresult:
         print(x)
 
