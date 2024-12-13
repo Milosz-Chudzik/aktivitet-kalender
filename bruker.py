@@ -131,15 +131,15 @@ def vis_januar_2024():
         SET notes = '{notat}'
         WHERE date = '{dato}'
         """
-        mycursor.execute(sql)
+        cursor.execute(sql)
         mydb.commit()
         print(f"Notat lagret for {dato}.")
 
     elif valg == 2:
         dato = valgtDato()
         sql = f"SELECT notes FROM january WHERE date = '{dato}'"
-        mycursor.execute(sql)
-        result = mycursor.fetchone()
+        cursor.execute(sql)
+        result = cursor.fetchone()
         if result is None:
             print("Det finnes ingen notat for denne datoen.")
         else:
@@ -163,15 +163,15 @@ def vis_februar_2024():
         SET notes = '{notat}'
         WHERE date = '{dato}'
         """
-        mycursor.execute(sql)
+        cursor.execute(sql)
         mydb.commit()
         print(f"Notat lagret for {dato}.")
 
     elif valg == 2:
         dato = valgtDato()
         sql = f"SELECT notes FROM february WHERE date = '{dato}'"
-        mycursor.execute(sql)
-        result = mycursor.fetchone()
+        cursor.execute(sql)
+        result = cursor.fetchone()
         if result is None:
             print("Det finnes ingen notat for denne datoen.")
         else:
@@ -195,15 +195,15 @@ def vis_mars_2024():
         SET notes = '{notat}'
         WHERE date = '{dato}'
         """
-        mycursor.execute(sql)
+        cursor.execute(sql)
         mydb.commit()
         print(f"Notat lagret for {dato}.")
 
     elif valg == 2:
         dato = valgtDato()
         sql = f"SELECT notes FROM march WHERE date = '{dato}'"
-        mycursor.execute(sql)
-        result = mycursor.fetchone()
+        cursor.execute(sql)
+        result = cursor.fetchone()
         if result is None:
             print("Det finnes ingen notat for denne datoen.")
         else:
@@ -227,15 +227,15 @@ def vis_april_2024():
         SET notes = '{notat}'
         WHERE date = '{dato}'
         """
-        mycursor.execute(sql)
+        cursor.execute(sql)
         mydb.commit()
         print(f"Notat lagret for {dato}.")
 
     elif valg == 2:
         dato = valgtDato()
         sql = f"SELECT notes FROM april WHERE date = '{dato}'"
-        mycursor.execute(sql)
-        result = mycursor.fetchone()
+        cursor.execute(sql)
+        result = cursor.fetchone()
         if result is None:
             print("Det finnes ingen notat for denne datoen.")
         else:
@@ -259,15 +259,15 @@ def vis_mai_2024():
         SET notes = '{notat}'
         WHERE date = '{dato}'
         """
-        mycursor.execute(sql)
+        cursor.execute(sql)
         mydb.commit()
         print(f"Notat lagret for {dato}.")
 
     elif valg == 2:
         dato = valgtDato()
         sql = f"SELECT notes FROM may WHERE date = '{dato}'"
-        mycursor.execute(sql)
-        result = mycursor.fetchone()
+        cursor.execute(sql)
+        result = cursor.fetchone()
         if result is None:
             print("Det finnes ingen notat for denne datoen.")
         else:
@@ -290,15 +290,15 @@ def vis_juni_2024():
         SET notes = '{notat}'
         WHERE date = '{dato}'
         """
-        mycursor.execute(sql)
+        cursor.execute(sql)
         mydb.commit()
         print(f"Notat lagret for {dato}.")
 
     elif valg == 2:
         dato = valgtDato()
         sql = f"SELECT notes FROM june WHERE date = '{dato}'"
-        mycursor.execute(sql)
-        result = mycursor.fetchone()
+        cursor.execute(sql)
+        result = cursor.fetchone()
         if result is None:
             print("Det finnes ingen notat for denne datoen.")
         else:
@@ -322,15 +322,15 @@ def vis_juli_2024():
         SET notes = '{notat}'
         WHERE date = '{dato}'
         """
-        mycursor.execute(sql)
+        cursor.execute(sql)
         mydb.commit()
         print(f"Notat lagret for {dato}.")
 
     elif valg == 2:
         dato = valgtDato()
         sql = f"SELECT notes FROM july WHERE date = '{dato}'"
-        mycursor.execute(sql)
-        result = mycursor.fetchone()
+        cursor.execute(sql)
+        result = cursor.fetchone()
         if result is None:
             print("Det finnes ingen notat for denne datoen.")
         else:
@@ -354,15 +354,15 @@ def vis_august_2024():
         SET notes = '{notat}'
         WHERE date = '{dato}'
         """
-        mycursor.execute(sql)
+        cursor.execute(sql)
         mydb.commit()
         print(f"Notat lagret for {dato}.")
 
     elif valg == 2:
         dato = valgtDato()
         sql = f"SELECT notes FROM august WHERE date = '{dato}'"
-        mycursor.execute(sql)
-        result = mycursor.fetchone()
+        cursor.execute(sql)
+        result = cursor.fetchone()
         if result is None:
             print("Det finnes ingen notat for denne datoen.")
         else:
@@ -386,15 +386,15 @@ def vis_september_2024():
         SET notes = '{notat}'
         WHERE date = '{dato}'
         """
-        mycursor.execute(sql)
+        cursor.execute(sql)
         mydb.commit()
         print(f"Notat lagret for {dato}.")
 
     elif valg == 2:
         dato = valgtDato()
         sql = f"SELECT notes FROM september WHERE date = '{dato}'"
-        mycursor.execute(sql)
-        result = mycursor.fetchone()
+        cursor.execute(sql)
+        result = cursor.fetchone()
         if result is None:
             print("Det finnes ingen notat for denne datoen.")
         else:
@@ -418,15 +418,15 @@ def vis_oktober_2024():
         SET notes = '{notat}'
         WHERE date = '{dato}'
         """
-        mycursor.execute(sql)
+        cursor.execute(sql)
         mydb.commit()
         print(f"Notat lagret for {dato}.")
 
     elif valg == 2:
         dato = valgtDato()
         sql = f"SELECT notes FROM october WHERE date = '{dato}'"
-        mycursor.execute(sql)
-        result = mycursor.fetchone()
+        cursor.execute(sql)
+        result = cursor.fetchone()
         if result is None:
             print("Det finnes ingen notat for denne datoen.")
         else:
@@ -449,15 +449,15 @@ def vis_november_2024():
         SET notes = '{notat}'
         WHERE date = '{dato}'
         """
-        mycursor.execute(sql)
+        cursor.execute(sql)
         mydb.commit()
         print(f"Notat lagret for {dato}.")
 
     elif valg == 2:
         dato = valgtDato()
         sql = f"SELECT notes FROM november WHERE date = '{dato}'"
-        mycursor.execute(sql)
-        result = mycursor.fetchone()
+        cursor.execute(sql)
+        result = cursor.fetchone()
         if result is None:
             print("Det finnes ingen notat for denne datoen.")
         else:
@@ -481,15 +481,15 @@ def vis_desember_2024():
         SET notes = '{notat}'
         WHERE date = '{dato}'
         """
-        mycursor.execute(sql)
+        cursor.execute(sql)
         mydb.commit()
         print(f"Notat lagret for {dato}.")
 
     elif valg == 2:
         dato = valgtDato()
         sql = f"SELECT notes FROM december WHERE date = '{dato}'"
-        mycursor.execute(sql)
-        result = mycursor.fetchone()
+        cursor.execute(sql)
+        result = cursor.fetchone()
         if result is None:
             print("Det finnes ingen notat for denne datoen.")
         else:
@@ -538,10 +538,6 @@ def start_kalender():
         else:
             print("Funksjon for valgt måned er ikke implementert.")
 
-start_kalender()
-
-
-
 #logg inn bruker
 def register_user():
     brukernavn = input("Skriv inn brukernavnet du ønsker: ").strip()
@@ -577,9 +573,16 @@ def login_user():
                 cursor.execute(query)
                 brukerId = cursor.fetchone()
                 innlogget_bruker = brukerId[0]
-                print(f"{innlogget_bruker}")
 
-                start()
+                videre = int(input("ønsker du å se stats skriv 1 eller kalenderen din skriv 2: "))
+                if videre == 1:
+                    start()
+
+                elif videre == 2:
+                    start_kalender()
+                
+                else:
+                    print("Ugyldig valg. Prøv igjen.")
 
             else:
                 print("Feil passord. Prøv igjen.")
