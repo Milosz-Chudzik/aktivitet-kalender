@@ -50,7 +50,7 @@ def vis_januar_2024():
 
         
         if input("vil du gå tilbake ja/nei") == "ja":
-            start()
+            start_kalender()
         
 
 def vis_februar_2024():
@@ -82,7 +82,7 @@ def vis_februar_2024():
 
         
         if input("vil du gå tilbake ja/nei") == "ja":
-            start()
+            start_kalender()
 
 
 def vis_mars_2024():
@@ -114,7 +114,7 @@ def vis_mars_2024():
 
         
         if input("vil du gå tilbake ja/nei") == "ja":
-            start()
+            start_kalender()
 
 
 def vis_april_2024():
@@ -146,7 +146,7 @@ def vis_april_2024():
 
         
         if input("vil du gå tilbake ja/nei") == "ja":
-            start()
+            start_kalender()
 
 
 def vis_mai_2024():
@@ -178,7 +178,7 @@ def vis_mai_2024():
 
         
         if input("vil du gå tilbake ja/nei") == "ja":
-            start()
+            start_kalender()
 
 def vis_juni_2024():
     text_calendar = calendar.TextCalendar()
@@ -209,7 +209,7 @@ def vis_juni_2024():
 
         
         if input("vil du gå tilbake ja/nei") == "ja":
-            start()
+            start_kalender()
 
 
 def vis_juli_2024():
@@ -241,7 +241,7 @@ def vis_juli_2024():
 
         
         if input("vil du gå tilbake ja/nei") == "ja":
-            start()
+            start_kalender()
 
 
 def vis_august_2024():
@@ -273,7 +273,7 @@ def vis_august_2024():
 
         
         if input("vil du gå tilbake ja/nei") == "ja":
-            start()
+            start_kalender()
 
 
 def vis_september_2024():
@@ -305,7 +305,7 @@ def vis_september_2024():
 
         
         if input("vil du gå tilbake ja/nei") == "ja":
-            start()
+            start_kalender()
 
 
 def vis_oktober_2024():
@@ -337,7 +337,7 @@ def vis_oktober_2024():
 
         
         if input("vil du gå tilbake ja/nei") == "ja":
-            start()
+            start_kalender()
 
 def vis_november_2024():
     text_calendar = calendar.TextCalendar()
@@ -368,7 +368,7 @@ def vis_november_2024():
 
         
         if input("vil du gå tilbake ja/nei") == "ja":
-            start()
+            start_kalender()
 
 
 def vis_desember_2024():
@@ -400,19 +400,19 @@ def vis_desember_2024():
 
         
         if input("vil du gå tilbake ja/nei") == "ja":
-            start()
+            start_kalender()
             
 
 
     else:
         if input("vil du gå tilbake ja/nei") == "ja":
-            start()
+            start_kalender()
 
-def start():
+def start_kalender():
     måned = velg_månede()  
     if måned not in range(1, 13):  
         print("Ugyldig måned!")
-        start()
+        start_kalender()
     else:
         if måned == 1:
             vis_januar_2024()
@@ -441,4 +441,4 @@ def start():
         else:
             print("Funksjon for valgt måned er ikke implementert.")
 
-start()
+start_kalender()

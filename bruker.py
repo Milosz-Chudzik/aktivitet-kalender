@@ -100,7 +100,7 @@ def oppdater_ovelse():
         
 def vis_ovelse():
     mycursor = mydb.cursor()
-    mycursor.execute("SELECT * FROM bruker_ovelser")
+    mycursor.execute(f"SELECT ovelser.ovelse, bruker_ovelser.reps, bruker_ovelser.sets, bruker_ovelser.sets, bruker_ovelser.vekt FROM bruker_ovelser inner join ovelser on ovelser.ovelse_id = bruker_ovelser.ovelse_id where bruker_id = {innlogget_bruker};")
     myresult = mycursor.fetchall()
     for x in myresult:
         print(x)
